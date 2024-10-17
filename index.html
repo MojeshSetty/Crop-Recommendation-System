@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Price Predictor</title>
+    <style>
+        body {
+            background-image: url('img1_crop.jpg');
+        }
+        div {
+            width:500px;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>Predict Future Crop Price</h1>
+    <form action="/predict" method="POST">
+        <!-- Dropdown for Commodity -->
+        <label for="commodity">Commodity:<br></label>
+        <select id="commodity" name="commodity" required>
+            <option value="0">Chilli</option>
+    <option value="1">Cotton</option>
+    <option value="2">Maize</option>
+    <option value="3">Groundnut</option>
+    <option value="4">Tea</option>
+    <option value="5">Mustard Seed</option>
+    <option value="6">Jute</option>
+    <option value="7">Wheat</option>
+    <option value="8">Pulses</option>
+    <option value="9">Paddy</option>
+    <option value="10">Bajra</option>
+    <option value="11">Apple</option>
+    <option value="12">Potato</option>
+    <option value="13">Barley</option>
+    <option value="14">Walnut</option>
+    <option value="15">Saffron</option>
+    <option value="16">Ragi</option>
+    <option value="17">Coffee</option>
+    <option value="18">Arecanut</option>
+    <option value="19">Coconut</option>
+    <option value="20">Pepper</option>
+    <option value="21">Rubber</option>
+    <option value="22">Soybean</option>
+    <option value="23">Sugarcane</option>
+    <option value="24">Onion</option>
+    <option value="25">Jowar</option>
+    <option value="26">Turmeric</option>
+    <option value="27">Mango</option>
+    <option value="28">Rice</option>
+
+        </select><br>
+
+        <!-- Dropdown for State -->
+        <label for="state">State:<br></label>
+        <select id="state" name="state" required>
+            <option value="0">Andhra Pradesh</option>
+    <option value="1">Assam</option>
+    <option value="2">Bihar</option>
+    <option value="3">Chhattisgarh</option>
+    <option value="4">Gujarat</option>
+    <option value="5">Haryana</option>
+    <option value="6">Himachal Pradesh</option>
+    <option value="7">Jammu and Kashmir</option>
+    <option value="8">Karnataka</option>
+    <option value="9">Kerala</option>
+    <option value="10">Madhya Pradesh</option>
+    <option value="11">Maharashtra</option>
+    <option value="12">Manipur</option>
+    <option value="13">NCT of Delhi</option>
+    <option value="14">Odisha</option>
+    <option value="15">Punjab</option>
+    <option value="16">Rajasthan</option>
+    <option value="17">Tamil Nadu</option>
+    <option value="18">Telangana</option>
+    <option value="19">Tripura</option>
+    <option value="20">Uttar Pradesh</option>
+    <option value="21">West Bengal</option>
+  </select><br>
+
+
+
+       <!-- Dropdown for District -->
+  <label for="district">District:<br></label>
+  <select id="district" name="district" required>
+    <!-- Andhra Pradesh -->
+    <optgroup label="Andhra Pradesh">
+      <option value="0">Guntur</option>
+      <option value="1">Nellore</option>
+      <option value="2">Kurnool</option>
+      <option value="3">Prakasam</option>
+      <option value="4">Anantapur</option>
+      <option value="5">Krishna</option>
+      <option value="6">Kadapa</option>
+    </optgroup>
+    
+    <!-- Assam -->
+    <optgroup label="Assam">
+      <option value="7">Guwahati</option>
+      <option value="8">Dibrugarh</option>
+      <option value="9">Silchar</option>
+      <option value="10">Tezpur</option>
+      <option value="11">Jorhat</option>
+      <option value="12">Tinsukia</option>
+      <option value="13">Nagaon</option>
+    </optgroup>
+<!-- Bihar -->
+    <optgroup label="Bihar">
+      <option value="14">Patna</option>
+      <option value="15">Muzaffarpur</option>
+      <option value="16">Gaya</option>
+      <option value="17">Bhagalpur</option>
+      <option value="18">Purnea</option>
+      <option value="19">Darbhanga</option>
+      <option value="20">Ara</option>
+    </optgroup>
+
+    <!-- Chhattisgarh -->
+    <optgroup label="Chhattisgarh">
+      <option value="21">Raipur</option>
+      <option value="22">Bilaspur</option>
+      <option value="23">Durg</option>
+      <option value="24">Raigarh</option>
+      <option value="25">Korba</option>
+      <option value="26">Rajnandgaon</option>
+      <option value="27">Jagdalpur</option>
+      <option value="28">Ambikapur</option>
+    </optgroup>
+
+    <!-- Gujarat -->
+    <optgroup label="Gujarat">
+      <option value="29">Ahmedabad</option>
+      <option value="30">Rajkot</option>
+      <option value="31">Surat</option>
+      <option value="32">Vadodara</option>
+      <option value="33">Bhavnagar</option>
+      <option value="34">Junagadh</option>
+      <option value="35">Mehsana</option>
+      <option value="36">Jamnagar</option>
+    </optgroup>
+
+    <!-- Haryana -->
+    <optgroup label="Haryana">
+      <option value="37">Karnal</option>
+      <option value="38">Hisar</option>
+      <option value="39">Panipat</option>
+<option value="40">Rohtak</option>
+      <option value="41">Sirsa</option>
+      <option value="42">Kurukshetra</option>
+      <option value="43">Yamunanagar</option>
+      <option value="44">Ambala</option>
+    </optgroup>
+
+    <!-- Himachal Pradesh -->
+    <optgroup label="Himachal Pradesh">
+      <option value="45">Shimla</option>
+      <option value="46">Kullu</option>
+      <option value="47">Solan</option>
+      <option value="48">Mandi</option>
+      <option value="49">Kangra</option>
+      <option value="50">Chamba</option>
+      <option value="51">Bilaspur</option>
+      <option value="52">Hamirpur</option>
+    </optgroup>
+<!-- Jammu and Kashmir -->
+    <optgroup label="Jammu and Kashmir">
+      <option value="53">Srinagar</option>
+      <option value="54">Anantnag</option>
+      <option value="55">Baramulla</option>
+      <option value="56">Jammu</option>
+      <option value="57">Pulwama</option>
+      <option value="58">Udhampur</option>
+      <option value="59">Kathua</option>
+      <option value="60">Shopian</option>
+    </optgroup>
+
+    <!-- Karnataka -->
+    <optgroup label="Karnataka">
+      <option value="61">Bangalore</option>
+      <option value="62">Mysore</option>
+      <option value="63">Hubli</option>
+      <option value="64">Mangalore</option>
+      <option value="65">Davangere</option>
+      <option value="66">Shimoga</option>
+      <option value="67">Belgaum</option>
+      <option value="68">Gulbarga</option>
+    </optgroup>
+<!-- Kerala -->
+    <optgroup label="Kerala">
+      <option value="69">Ernakulam</option>
+      <option value="70">Wayanad</option>
+      <option value="71">Thrissur</option>
+      <option value="72">Idukki</option>
+      <option value="73">Kozhikode</option>
+      <option value="74">Palakkad</option>
+      <option value="75">Kannur</option>
+      <option value="76">Alappuzha</option>
+    </optgroup>
+
+    <!-- Madhya Pradesh -->
+    <optgroup label="Madhya Pradesh">
+      <option value="77">Indore</option>
+      <option value="78">Bhopal</option>
+      <option value="79">Gwalior</option>
+      <option value="80">Jabalpur</option>
+      <option value="81">Ujjain</option>
+      <option value="82">Sagar</option>
+      <option value="83">Rewa</option>
+      <option value="84">Ratlam</option>
+    </optgroup>
+
+<!-- Maharashtra -->
+    <optgroup label="Maharashtra">
+      <option value="85">Pune</option>
+      <option value="86">Nashik</option>
+      <option value="87">Nagpur</option>
+      <option value="88">Aurangabad</option>
+      <option value="89">Kolhapur</option>
+      <option value="90">Solapur</option>
+      <option value="91">Amravati</option>
+      <option value="92">Mumbai</option>
+    </optgroup>
+
+    <!-- Manipur -->
+    <optgroup label="Manipur">
+      <option value="93">Imphal East</option>
+      <option value="94">Thoubal</option>
+      <option value="95">Imphal West</option>
+      <option value="96">Bishnupur</option>
+    </optgroup>
+<!-- NCT of Delhi -->
+    <optgroup label="NCT of Delhi">
+      <option value="97">Central Delhi</option>
+      <option value="98">North Delhi</option>
+      <option value="99">East Delhi</option>
+      <option value="100">South Delhi</option>
+      <option value="101">West Delhi</option>
+    </optgroup>
+
+    <!-- Odisha -->
+    <optgroup label="Odisha">
+      <option value="102">Bhubaneswar</option>
+      <option value="103">Cuttack</option>
+      <option value="104">Puri</option>
+      <option value="105">Sambalpur</option>
+      <option value="106">Balasore</option>
+      <option value="107">Rourkela</option>
+      <option value="108">Berhampur</option>
+      <option value="109">Bhadrak</option>
+    </optgroup>
+      <!-- Punjab -->
+    <optgroup label="Punjab">
+      <option value="110">Ludhiana</option>
+      <option value="111">Amritsar</option>
+      <option value="112">Jalandhar</option>
+      <option value="113">Patiala</option>
+      <option value="114">Bathinda</option>
+      <option value="115">Hoshiarpur</option>
+      <option value="116">Moga</option>
+      <option value="117">Faridkot</option>
+    </optgroup>
+
+    <!-- Rajasthan -->
+    <optgroup label="Rajasthan">
+      <option value="118">Jaipur</option>
+      <option value="119">Kota</option>
+      <option value="120">Udaipur</option>
+      <option value="121">Jodhpur</option>
+      <option value="122">Bikaner</option>
+      <option value="123">Ajmer</option>
+    </optgroup>
+ <!-- Tamil Nadu -->
+    <optgroup label="Tamil Nadu">
+      <option value="124">Chennai</option>
+      <option value="125">Coimbatore</option>
+      <option value="126">Madurai</option>
+      <option value="127">Salem</option>
+      <option value="128">Tiruchirappalli</option>
+      <option value="129">Thanjavur</option>
+      <option value="130">Erode</option>
+      <option value="131">Vellore</option>
+    </optgroup>
+
+    <!-- Telangana -->
+    <optgroup label="Telangana">
+      <option value="132">Hyderabad</option>
+      <option value="133">Warangal</option>
+      <option value="134">Nizamabad</option>
+      <option value="135">Karimnagar</option>
+      <option value="136">Khammam</option>
+      <option value="137">Mahbubnagar</option>
+      <option value="138">Adilabad</option>
+    </optgroup>
+
+    <!-- Tripura -->
+    <optgroup label="Tripura">
+      <option value="139">Agartala</option>
+      <option value="140">Dharmanagar</option>
+<option value="141">Udaipur</option>
+    </optgroup>
+
+    <!-- Uttar Pradesh -->
+    <optgroup label="Uttar Pradesh">
+      <option value="142">Lucknow</option>
+      <option value="143">Varanasi</option>
+      <option value="144">Kanpur</option>
+      <option value="145">Allahabad</option>
+      <option value="146">Meerut</option>
+      <option value="147">Agra</option>
+      <option value="148">Gorakhpur</option>
+      <option value="149">Bareilly</option>
+    </optgroup>
+
+    <!-- West Bengal -->
+    <optgroup label="West Bengal">
+      <option value="150">Kolkata</option>
+      <option value="151">Siliguri</option>
+      <option value="152">Howrah</option>
+      <option value="153">Malda</option>
+      <option value="154">Durgapur</option>
+      <option value="155">Bardhaman</option>
+      <option value="156">Cooch Behar</option>
+      <option value="157">Murshidabad</option>
+    </optgroup>
+  </select><br>
+
+
+        <!-- Dropdown for Market -->
+        <label for="market">Market :<br></label>
+        <select id="mandi" name="mandi" required>
+  <option value="1">Guntur Mandi</option>
+  <option value="2">Nellore Mandi</option>
+  <option value="3">Kurnool Mandi</option>
+  <option value="4">Ongole Mandi</option>
+  <option value="5">Anantapur Mandi</option>
+  <option value="6">Vijayawada Mandi</option>
+  <option value="7">Kadapa Mandi</option>
+  <option value="8">Guwahati Mandi</option>
+  <option value="9">Dibrugarh Mandi</option>
+  <option value="10">Silchar Mandi</option>
+  <option value="11">Tezpur Mandi</option>
+  <option value="12">Jorhat Mandi</option>
+  <option value="13">Tinsukia Mandi</option>
+  <option value="14">Nagaon Mandi</option>
+  <option value="15">Patna Mandi</option>
+  <option value="16">Muzaffarpur Mandi</option>
+  <option value="17">Gaya Mandi</option>
+  <option value="18">Bhagalpur Mandi</option>
+  <option value="19">Purnea Mandi</option>
+  <option value="20">Darbhanga Mandi</option>
+  <option value="21">Ara Mandi</option>
+  <option value="22">Raipur Mandi</option>
+  <option value="23">Bilaspur Mandi</option>
+  <option value="24">Durg Mandi</option>
+  <option value="25">Raigarh Mandi</option>
+  <option value="26">Korba Mandi</option>
+  <option value="27">Rajnandgaon Mandi</option>
+  <option value="28">Jagdalpur Mandi</option>
+  <option value="29">Ambikapur Mandi</option>
+  <option value="30">Ahmedabad Mandi</option>
+  <option value="31">Rajkot Mandi</option>
+  <option value="32">Surat Mandi</option>
+  <option value="33">Vadodara Mandi</option>
+  <option value="34">Bhavnagar Mandi</option>
+  <option value="35">Junagadh Mandi</option>
+  <option value="36">Mehsana Mandi</option>
+  <option value="37">Jamnagar Mandi</option>
+  <option value="38">Karnal Mandi</option>
+  <option value="39">Hisar Mandi</option>
+  <option value="40">Panipat Mandi</option>
+  <option value="41">Rohtak Mandi</option>
+  <option value="42">Sirsa Mandi</option>
+  <option value="43">Kurukshetra Mandi</option>
+  <option value="44">Yamunanagar Mandi</option>
+  <option value="45">Ambala Mandi</option>
+  <option value="46">Shimla Mandi</option>
+  <option value="47">Kullu Mandi</option>
+  <option value="48">Solan Mandi</option>
+  <option value="49">Mandi Mandi</option>
+  <option value="50">Kangra Mandi</option>
+  <option value="51">Chamba Mandi</option>
+  <option value="52">Bilaspur Mandi</option>
+  <option value="53">Hamirpur Mandi</option>
+  <option value="54">Srinagar Mandi</option>
+  <option value="55">Anantnag Mandi</option>
+  <option value="56">Baramulla Mandi</option>
+  <option value="57">Jammu Mandi</option>
+  <option value="58">Pulwama Mandi</option>
+  <option value="59">Udhampur Mandi</option>
+  <option value="60">Kathua Mandi</option>
+  <option value="61">Shopian Mandi</option>
+  <option value="62">Bangalore Mandi</option>
+  <option value="63">Mysore Mandi</option>
+  <option value="64">Hubli Mandi</option>
+  <option value="65">Mangalore Mandi</option>
+    <option value="66">Davangere Mandi</option>
+  <option value="67">Shimoga Mandi</option>
+  <option value="68">Belgaum Mandi</option>
+  <option value="69">Gulbarga Mandi</option>
+  <option value="70">Ernakulam Mandi</option>
+  <option value="71">Wayanad Mandi</option>
+  <option value="72">Thrissur Mandi</option>
+  <option value="73">Idukki Mandi</option>
+  <option value="74">Kozhikode Mandi</option>
+  <option value="75">Palakkad Mandi</option>
+  <option value="76">Kannur Mandi</option>
+  <option value="77">Alappuzha Mandi</option>
+  <option value="78">Indore Mandi</option>
+  <option value="79">Bhopal Mandi</option>
+  <option value="80">Gwalior Mandi</option>
+  <option value="81">Jabalpur Mandi</option>
+  <option value="82">Ujjain Mandi</option>
+  <option value="83">Sagar Mandi</option>
+  <option value="84">Rewa Mandi</option>
+  <option value="85">Ratlam Mandi</option>
+  <option value="86">Pune Mandi</option>
+  <option value="87">Nashik Mandi</option>
+  <option value="88">Nagpur Mandi</option>
+  <option value="89">Aurangabad Mandi</option>
+  <option value="90">Kolhapur Mandi</option>
+  <option value="91">Solapur Mandi</option>
+  <option value="92">Amravati Mandi</option>
+  <option value="93">Mumbai Mandi</option>
+  <option value="94">Imphal Mandi</option>
+  <option value="95">Thoubal Mandi</option>
+  <option value="96">Bishnupur Mandi</option>
+  <option value="97">Azadpur Mandi</option>
+  <option value="98">Narela Mandi</option>
+  <option value="99">Ghazipur Mandi</option>
+  <option value="100">Okhla Mandi</option>
+  <option value="101">Najafgarh Mandi</option>
+  <option value="102">Bhubaneswar Mandi</option>
+  <option value="103">Cuttack Mandi</option>
+  <option value="104">Puri Mandi</option>
+  <option value="105">Sambalpur Mandi</option>
+  <option value="106">Balasore Mandi</option>
+  <option value="107">Rourkela Mandi</option>
+  <option value="108">Berhampur Mandi</option>
+  <option value="109">Bhadrak Mandi</option>
+  <option value="110">Ludhiana Mandi</option>
+  <option value="111">Amritsar Mandi</option>
+  <option value="112">Jalandhar Mandi</option>
+  <option value="113">Patiala Mandi</option>
+  <option value="114">Bathinda Mandi</option>
+  <option value="115">Hoshiarpur Mandi</option>
+  <option value="116">Moga Mandi</option>
+  <option value="117">Faridkot Mandi</option>
+  <option value="118">Jaipur Mandi</option>
+  <option value="119">Kota Mandi</option>
+  <option value="120">Udaipur Mandi</option>
+  <option value="121">Jodhpur Mandi</option>
+  <option value="122">Bikaner Mandi</option>
+  <option value="123">Ajmer Mandi</option>
+  <option value="124">Chennai Mandi</option>
+  <option value="125">Coimbatore Mandi</option>
+  <option value="126">Madurai Mandi</option>
+  <option value="127">Salem Mandi</option>
+  <option value="128">Tiruchirappalli Mandi</option>
+  <option value="129">Thanjavur Mandi</option>
+  <option value="130">Erode Mandi</option>
+  <option value="131">Vellore Mandi</option>
+  <option value="132">Hyderabad Mandi</option>
+  <option value="133">Warangal Mandi</option>
+  <option value="134">Nizamabad Mandi</option>
+  <option value="135">Karimnagar Mandi</option>
+  <option value="136">Khammam Mandi</option>
+  <option value="137">Mahbubnagar Mandi</option>
+  <option value="138">Adilabad Mandi</option>
+  <option value="139">Agartala Mandi</option>
+  <option value="140">Dharmanagar Mandi</option>
+  <option value="141">Udaipur Mandi</option>
+  <option value="142">Lucknow Mandi</option>
+  <option value="143">Varanasi Mandi</option>
+  <option value="144">Kanpur Mandi</option>
+  <option value="145">Allahabad Mandi</option>
+  <option value="146">Meerut Mandi</option>
+  <option value="147">Agra Mandi</option>
+  <option value="148">Gorakhpur Mandi</option>
+  <option value="149">Bareilly Mandi</option>
+  <option value="150">Kolkata Mandi</option>
+  <option value="151">Siliguri Mandi</option>
+  <option value="152">Howrah Mandi</option>
+  <option value="153">Malda Mandi</option>
+  <option value="154">Durgapur Mandi</option>
+  <option value="155">Bardhaman Mandi</option>
+  <option value="156">Cooch Behar Mandi</option>
+  <option value="157">Murshidabad Mandi</option>
+</select><br>
+
+       <!-- Dropdown for Month -->
+<label for="month">Month:<br></label>
+<select id="month" name="month" required>
+  <option value="1">January</option>
+  <option value="2">February</option>
+  <option value="3">March</option>
+  <option value="4">April</option>
+  <option value="5">May</option>
+  <option value="6">June</option>
+  <option value="7">July</option>
+  <option value="8">August</option>
+  <option value="9">September</option>
+  <option value="10">October</option>
+  <option value="11">November</option>
+  <option value="12">December</option>
+</select><br>
+
+
+        <!-- Dropdown for Season -->
+        <label for="season">Season:<br></label>
+        <select id="season" name="season" required>
+            <option value="0">Winter</option>
+            <option value="1">Spring</option>
+            <option value="2">Summer</option>
+            <option value="3">Monsoon</option>
+            <option value="4">Autumn</option>
+            <option value="5">Pre Winter</option>
+        </select><br>
+
+        <!-- Dropdown for Day of the Week -->
+        <label for="day">Day of the week:<br></label>
+        <select id="day" name="day" required>
+            <option value="0">Monday</option>
+            <option value="1">Tuesday</option>
+            <option value="2">Wednesday</option>
+            <option value="3">Thursday</option>
+            <option value="4">Friday</option>
+            <option value="5">Saturday</option>
+            <option value="6">Sunday</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+</div>
+</body>
+</html>
