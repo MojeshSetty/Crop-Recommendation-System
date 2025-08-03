@@ -11,9 +11,7 @@ A web-based application that predicts crop prices based on inputs like commodity
 
 ## 📸 Demo Preview
 
-![App Preview](assets/demo_crop_price.png)
-
-> *(Upload your own screenshots to `assets/` folder and replace the file name above)*
+<img src="https://drive.google.com/file/d/1JcdY7YL7CqrI3g8qZp4pC5mfsfZhqMQM/view?usp=sharing"/> 
 
 ---
 
