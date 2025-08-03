@@ -11,7 +11,7 @@ A web-based application that predicts crop prices based on inputs like commodity
 
 ## 📸 Demo Preview
 
-<img src="https://drive.google.com/file/d/1JcdY7YL7CqrI3g8qZp4pC5mfsfZhqMQM/view?usp=sharing"/> 
+![App Preview](https://drive.google.com/uc?export=view&id=1JcdY7YL7CqrI3g8qZp4pC5mfsfZhqMQM)
 
 ---
 
@@ -41,3 +41,12 @@ A web-based application that predicts crop prices based on inputs like commodity
 
 ## 📁 Project Structure
 
+```bash
+├── app.py               # Main Flask application
+├── regr.pkl             # Trained machine learning model
+├── templates/
+│   ├── index.html       # Input form
+│   └── result.html      # Result display
+├── static/              # CSS/JS or images (if any)
+├── assets/              # Screenshots for README
+└── README.md            # You're here!
